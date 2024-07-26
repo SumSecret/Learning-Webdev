@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+
+    <!-- Check if the cart contains items -->
+    <div th:if="${cart.items.size()} > 0">
+        <!-- Display the items in the cart -->
+        <ul>
+            <li th:each="item : ${cart.items}">
+                <!-- Display the item's name and price -->
+                <span th:text="${item.name}">Item Name</span> - $<span th:text="${item.price}">Item Price</span>
+            </li>
+        </ul>
+
+        <!-- Display the total price of the items in the cart -->
+        <h3>Total: $<span th:text="${cart.total}">Total Price</span></h3>
+    </div>
+
+    <!-- Message to display if the cart is empty -->
+    <div th:if="${cart.items.size()} == 0">
+        <p>Your cart is empty. <a href="/">Continue shopping</a></p>
+    </div>
+
+    <!-- Link to go back to the items list -->
+    <a href="/">Back to Items</a>
+</body>
+</html>
