@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop Items</title>
+</head>
+<body>
+    <h1>Available Items</h1>
+
+    <!-- Loop through the list of items passed from the controller and display each item -->
+    <ul>
+        <li th:each="item : ${items}">
+            <!-- Display the item's name and price -->
+            <span th:text="${item.name}">Item Name</span> - $<span th:text="${item.price}">Item Price</span>
+
+            <!-- Form to add the item to the cart -->
+            <form action="/add-to-cart" method="post">
+                <!-- Hidden input to pass the item's ID -->
+                <input type="hidden" name="itemId" th:value="${item.id}" />
+                <!-- Submit button to add the item to the cart -->
+                <button type="submit">Add to Cart</button>
+            </form>
+        </li>
+    </ul>
+
+    <!-- Link to view the shopping cart -->
+    <a href="/cart">View Cart</a>
+</body>
+</html>
